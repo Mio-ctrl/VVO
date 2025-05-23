@@ -1,0 +1,6 @@
+Sensor eintrag:
+
+
+  - platform: vvo
+    station_id: "12345"   # Beispiel-Station-ID (ersetzt durch echte)
+    name: "VVO Abfahrten Trachau"
