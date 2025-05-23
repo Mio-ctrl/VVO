@@ -1,0 +1,8 @@
+{
+  "domain": "vvo",
+  "name": "VVO Departures",
+  "version": "1.0.0",
+  "requirements": ["requests"],
+  "dependencies": [],
+  "codeowners": []
+}
