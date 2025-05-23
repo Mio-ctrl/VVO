@@ -2,5 +2,8 @@ Sensor eintrag:
 
 
 - platform: vvo
-  station_id: "12345"   # Beispiel-Station-ID (ersetzt durch echte)
-  name: "VVO Abfahrten Trachau"
+  name: "Abfahrten"
+  station_ids:
+    - 33000622  # Trachau
+    - 33000212  # Trachau West
+  max_results: 10
