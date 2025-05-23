@@ -71,6 +71,7 @@ class VvoDepartureSensor(Entity):
             }
             departures.append(dep)
 
+
             self._state = f"{len(departures)} Abfahrten"
             self._attributes = {
                 "station_id": self._station_id,
