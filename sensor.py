@@ -55,18 +55,21 @@ class VvoDepartureSensor(Entity):
 
             departures = []
 
-            for journey in data.get("Departures", []):
-                planned_time = journey["ScheduledTime"]
-                estimated_time = journey.get("RealTime", planned_time)
-
-                dep = {
-                    "line": journey.get("LineName", ""),
-                    "direction": journey.get("Direction", ""),
-                    "departure_time": self._format_time(estimated_time),
-                    "scheduled_time": self._format_time(planned_time),
-                    "platform": journey.get("Platform", "")
-                }
-                departures.append(dep)
+        for journey in data.get("Departures", []):
+            planned_time = journey["ScheduledTime"]
+            estimated_time = journey.get("RealTime", planned_time)
+            trip_id = journey.get("TripId", "")  # falls anders benannt, bitte anpassen
+        
+            dep = {
+                "line": journey.get("LineName", ""),
+                "direction": journey.get("Direction", ""),
+                "departure_time": self._format_time(estimated_time),
+                "scheduled_time": self._format_time(planned_time),
+                "platform": journey.get("Platform", ""),
+                "trip_id": trip_id,
+                "unique_id": f'{trip_id}_{self._format_time(planned_time).replace(":", "")}'
+            }
+            departures.append(dep)
 
             self._state = f"{len(departures)} Abfahrten"
             self._attributes = {
