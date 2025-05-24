@@ -10,7 +10,7 @@
 
 **VVO Abfahrts-Sensor** ist ein Custom Sensor für [Home Assistant](https://www.home-assistant.io/), der aktuelle Abfahrtszeiten des Verkehrsverbunds Oberelbe (VVO) über die offizielle VVO-Web-API abruft und anzeigt.
 
-Er unterstützt mehrere Haltestellen, zeigt geplante und tatsächliche Abfahrtszeiten an und nutzt dabei die eindeutige Fahrt-ID (`DlId`), um Abfahrten präzise zu identifizieren.
+Er unterstützt mehrere Haltestellen, zeigt geplante und tatsächliche Abfahrtszeiten an und nutzt dabei eine Kombination aus Routen ID (`DlId`) und Geplanter Zeit um Abfahrten präzise zu identifizieren.
 
 ---
 
