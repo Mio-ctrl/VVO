@@ -52,6 +52,7 @@ class VvoDepartureSensor(Entity):
             response = requests.post(url, json=payload, headers=headers, timeout=10)
             response.raise_for_status()
             data = response.json()
+            _LOGGER.debug(f"[VVO] API Response für Station {self._station_id}: {data}")
 
             departures = []
 
