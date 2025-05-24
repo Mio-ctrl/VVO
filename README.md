@@ -1,68 +1,42 @@
-VVO Abfahrts-Sensor für Home Assistant
+# VVO Abfahrts-Sensor für Home Assistant
 
+[![Python](https://img.shields.io/badge/python-3.8%2B-blue)](https://www.python.org/)  
+[![Home Assistant](https://img.shields.io/badge/home--assistant-supported-green)](https://www.home-assistant.io/)  
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
+---
 
-Projektbeschreibung
-Dieser Custom Sensor für Home Assistant ermöglicht das Abfragen und Anzeigen von Abfahrtszeiten öffentlicher Verkehrsmittel des Verkehrsverbunds Oberelbe (VVO).
-Der Sensor nutzt die offizielle VVO-Web-API, um für eine oder mehrere Haltestellen aktuelle Abfahrtsinformationen zu erhalten und als Sensorwerte in Home Assistant darzustellen.
+## Übersicht
 
-Features
-Abfrage mehrerer Haltestellen (Station IDs)
+**VVO Abfahrts-Sensor** ist ein Custom Sensor für [Home Assistant](https://www.home-assistant.io/), der aktuelle Abfahrtszeiten des Verkehrsverbunds Oberelbe (VVO) über die offizielle VVO-Web-API abruft und anzeigt.
 
-Anzeige der nächsten Abfahrten mit Linie, Richtung, Gleis, geplanter und tatsächlicher Abfahrtszeit
+Er unterstützt mehrere Haltestellen, zeigt geplante und tatsächliche Abfahrtszeiten an und nutzt dabei die eindeutige Fahrt-ID (`DlId`), um Abfahrten präzise zu identifizieren.
 
-Verwendung der offiziellen eindeutigen Fahrt-ID (DlId) zur Identifikation
+---
 
-Zeitanzeige im originalen VVO-Format ohne Zeitzonenverschiebung
+## Features
 
-Robust gegen API-Fehler mit Fehler-Logging
+- ✅ Abfrage mehrerer Haltestellen gleichzeitig  
+- ✅ Anzeige von Linie, Richtung, Abfahrtszeit (geplant & real) und Gleis  
+- ✅ Nutzung der offiziellen Fahrt-ID (`DlId`) für eindeutige Identifikation  
+- ✅ Zeitangaben genau wie von der API bereitgestellt (keine Zeitzonenanpassung)  
+- ✅ Fehlerbehandlung und Logging  
+- ✅ Einfache Integration in Home Assistant
 
-Einfach in Home Assistant integrierbar
+---
 
-Installation
-Lege im custom_components-Verzeichnis deines Home Assistant-Setups einen Ordner vvo_departures an.
+## Installation
 
-Kopiere die Datei sensor.py aus diesem Repository in diesen Ordner.
+1. Lege in deinem Home Assistant Verzeichnis unter `custom_components` einen neuen Ordner namens `vvo_departures` an.
 
-Füge folgende Konfiguration in deine configuration.yaml ein:
+2. Kopiere die Datei `sensor.py` in diesen Ordner.
 
-yaml
-Kopieren
-Bearbeiten
+3. Füge in deine `configuration.yaml` folgende Konfiguration ein:
+
+```yaml
 sensor:
   - platform: vvo_departures
     station_ids:
-      - "12345"       # Ersetze durch deine Haltestellen-IDs
+      - "12345"       # Beispiel-Haltestellen-ID, anpassen!
       - "67890"
-    max_results: 10   # Optional, Standard ist 10
-Starte Home Assistant neu.
-
-Konfiguration
-Parameter	Typ	Beschreibung	Standardwert
-station_ids	Liste[String]	Liste der Haltestellen-IDs, für die Abfahrten angezeigt werden sollen	—
-max_results	Integer	Maximale Anzahl der angezeigten Abfahrten pro Station	10
-
-Beispielhafte Sensorwerte
-Nach der Einrichtung erstellt der Sensor für jede Haltestelle ein Entity mit folgendem Status und Attributen:
-
-Status: Anzahl der verfügbaren Abfahrten (z.B. 5 Abfahrten)
-
-Attribute:
-
-station_id: ID der Haltestelle
-
-departures: Liste der nächsten Abfahrten mit Details wie Linie, Richtung, Abfahrtszeit, geplant, Gleis, DlId und unique_id
-
-Entwicklung & Struktur
-setup_platform: Initialisiert Sensoren für jede Haltestelle
-
-VvoDepartureSensor: Hauptklasse, die API abfragt und Daten verarbeitet
-
-parse_ms_date: Hilfsfunktion zum Parsen der Zeitstempel aus der VVO-API
-
-Bekannte Einschränkungen
-Zeitangaben werden 1:1 von der API übernommen, ohne Umrechnung in lokale Zeitzonen
-
-Keine Unterstützung für Ankunftszeiten (nur Abfahrten)
-
-Synchroner API-Zugriff (kann in Zukunft asynchron umgesetzt werden)
+    max_results: 10    # Optional, Standardwert: 10
