@@ -18,7 +18,7 @@ Er unterstützt mehrere Haltestellen, zeigt geplante und tatsächliche Abfahrtsz
 
 - ✅ Abfrage mehrerer Haltestellen gleichzeitig  
 - ✅ Anzeige von Linie, Richtung, Abfahrtszeit (geplant & real) und Gleis  
-- ✅ Nutzung der offiziellen Fahrt-ID (`DlId`) für eindeutige Identifikation  
+- ✅ Eindeutige Identifikation durch (`unique_id`)
 - ✅ Zeitangaben genau wie von der API bereitgestellt (keine Zeitzonenanpassung)  
 - ✅ Fehlerbehandlung und Logging  
 - ✅ Einfache Integration in Home Assistant
@@ -27,7 +27,7 @@ Er unterstützt mehrere Haltestellen, zeigt geplante und tatsächliche Abfahrtsz
 
 ## Installation
 
-1. Lege in deinem Home Assistant Verzeichnis unter `custom_components` einen neuen Ordner namens `vvo_departures` an.
+1. Lege in deinem Home Assistant Verzeichnis unter `custom_components` einen neuen Ordner namens `vvo` an.
 
 2. Kopiere die Datei `sensor.py` in diesen Ordner.
 
